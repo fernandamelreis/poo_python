@@ -11,10 +11,29 @@ class Conta: #definição de entidade
         self.valor = valor #instanciando atributos de futuros objetos na memória
         
     def Extrato_Conta(self):
-        print("---EXTRATO---")
-        print("Imprimindo dados da sua conta bancária...")
-        print("Conta: {} Agência: {}".format(self.conta, self.agencia))
-        print("-------------")
+        print("---- DEMONSTRATIVO DE OPERAÇÃO ----")
+        print("                         09/08/2023")
+        print("CITIBANK                   14:59:13")
+        print("Extrato N. 93120001-9628           ")
+        print("                                   ")
+        print("EXTRATO CONTA CORRENTE -           ")
+        print("NOME: 0000{}".format(self.name_titular))
+        print("CONTA: {} AGENCIA: {}".format(self.conta, self.agencia))
+        print("DATA HISTORICO                VALOR")
+        print("-----------------------------------")
+        print("08/20 0131SAQUE BCO24H 7.000.000.000.01")
+        print("      0131SAQUE CITICA 2.000.000.000.02")
+        print("08/20 0161 PAGO CAIX 8.000.000.000.15")
+        print("08/20 0162CH COMPENSAD 7.000.000.000.06")
+        print("08/20 0162CH COMPENSAD 4.000.000.000.23")
+        print("08/20 0616CH ELETRONIC 9.000.000.000.02")
+        print("08/20 0774MAESTRO LOCA 4.000.000.000.00")
+        print("                                   ")
+        print("     SALDO ATUAL                 {}".format(self.dinheiro))
+        print("     DISPONIVEL                  {}".format(self.dinheiro))
+        print("                                   ")
+        print("     SALDO SUJEITO A CONFIRMACAO   ")
+        print("----------------------------------------")
         
     def Saque_Conta(self):
         print("---SAQUE---")
@@ -99,8 +118,15 @@ class Conta: #definição de entidade
         print("---EMPRÉSTIMO---")
         print("{}, você deseja realizar um empréstimo?".format(self.name_titular))
         print("Você tem um valor de R$ {} na sua conta disponível ".format(self.valor))
-        print("-------------")
         
+        resp = input("Fazer empréstimo: y/n  ")
+        
+        if(resp =='y'):
+            print("Empréstimo efetivado!")
+            print("Seu saldo agora é {} + {}".format(self.dinheiro, self.valor))
+        else:
+            print("Fim de operação!")
+          
     def Depositar_Conta(self):
         print("{}, você deseja realizar o depósito de quanto?".format(self.name_titular))
         print("1. [ 50.00 ]")
@@ -133,7 +159,7 @@ class Conta: #definição de entidade
                 print("Opção inválida!!!")
                        
 c1 = Conta('1', 'João', '111.111.111-11', 'joao@email.com', '123456', '123-4', '56', 1000.0, 2000.0) #definindo objeto
-c1.Saque_Conta()
+c1.Extrato_Conta()
 
 
 
