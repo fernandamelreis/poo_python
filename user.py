@@ -55,13 +55,20 @@ class Application:
 
         self.entry = tk.Entry(self.root)
         self.entry.pack()
+        
+        self.label = tk.Label(self.root, text="Senha:")
+        self.label.pack()
+
+        self.entry = tk.Entry(self.root)
+        self.entry.pack()
 
         self.button = tk.Button(self.root, text="Inserir", command=self.insert_data)
         self.button.pack()
 
     def insert_data(self):
         nome = self.entry.get()
-        query = f"INSERT INTO users (username) VALUES ('{nome}')"
+        senha = self.entry.get()
+        query = f"INSERT INTO users (username, password) VALUES ('{nome}', '{senha}')"
         self.db.execute_query(query)
         messagebox.showinfo("Sucesso", "Dados inseridos com sucesso!")
         
