@@ -8,7 +8,7 @@ POO na linguagem Python.
 - `Instância`: Armazenamento dos objetos da classe na memória;
 - `Método`: Definição de funcionalidades dos objetos da classe;
 - `Objeto`: Registro de objetos que pertencem a classe;
-- 'Integração com MySQL': Integrar banco de dados para cadastrar e consultar informações.
+- `Integração com MySQL`: Integrar banco de dados para cadastrar e consultar informações.
 
 # 📖 Referência
 
