@@ -5,8 +5,11 @@ import mysql.connector
 def cadastrar_usuario():
     username = entry_username.get()
     password = entry_password.get()
+    email = entry_email.get()
+    phonenumber = entry_phonenumber.get()
+    
 
-    # Substitua os valores abaixo com as configurações do seu banco de dados
+    #configurando banco de dados
     db_config = {
         'host': 'localhost',
         'user': 'root',
@@ -18,8 +21,8 @@ def cadastrar_usuario():
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor()
 
-        query = "INSERT INTO usuarios (username, password) VALUES (%s, %s)"
-        cursor.execute(query, (username, password))
+        query = "INSERT INTO usuarios (username, password, email, phonenumber) VALUES (%s, %s, %s, %s)"
+        cursor.execute(query, (username, password, email, phonenumber))
         connection.commit()
 
         label_status.config(text="Usuário cadastrado com sucesso!", fg="green")
@@ -37,6 +40,16 @@ label_username = tk.Label(root, text="Novo Usuário:")
 label_username.pack()
 entry_username = tk.Entry(root)
 entry_username.pack()
+
+label_email = tk.Label(root, text="Novo E-mail:")
+label_email.pack()
+entry_email = tk.Entry(root)
+entry_email.pack()
+
+label_phonenumber = tk.Label(root, text="Contato:")
+label_phonenumber.pack()
+entry_phonenumber = tk.Entry(root)
+entry_phonenumber.pack()
 
 label_password = tk.Label(root, text="Senha:")
 label_password.pack()
