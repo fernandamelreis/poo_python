@@ -46,7 +46,50 @@ class StockApp:
         self.db.connect()
 
         self.create_main_screen()
+    
+    #autenticando usuário
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Sistema de Controle de Estoque")
+        self.root.geometry("400x300")
+        self.root.configure(bg="#f0f0f0")
+
+        self.db = MySQLDatabase(host='localhost', user='root', password='root', database='estoque_db')
+        self.db.connect()
+
+        self.create_login_screen()
         
+    def create_login_screen(self):
+        self.login_frame = tk.Frame(self.root, bg="#f0f0f0")
+        self.login_frame.pack(fill=tk.BOTH, expand=True)
+                
+        self.login_label = tk.Label(self.login_frame, text="Login de usuário:", font=("Helvetica", 16), bg="#f0f0f0")
+        self.login_label.pack(pady=20)
+
+        self.username_label = tk.Label(self.login_frame, text="Usuário:", bg="#f0f0f0")
+        self.username_label.pack()
+
+        self.username_entry = tk.Entry(self.login_frame)
+        self.username_entry.pack()
+
+        self.password_label = tk.Label(self.login_frame, text="Senha:", bg="#f0f0f0")
+        self.password_label.pack()
+
+        self.password_entry = tk.Entry(self.login_frame, show="*")
+        self.password_entry.pack()
+
+        self.login_button = tk.Button(self.login_frame, text="Login", command=self.check_login, bg="#4CAF50", fg="white")
+        self.login_button.pack(pady=20)
+        
+    def check_login(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+
+        if username == "admin" and password == "admin":
+            self.login_frame.destroy()
+            self.create_main_screen()
+        else:
+            messagebox.showerror("Erro de login", "Credenciais inválidas.")   
 
     def create_main_screen(self):
         self.main_frame = tk.Frame(self.root, bg="#f0f0f0")
@@ -60,6 +103,13 @@ class StockApp:
 
         self.view_button = tk.Button(self.main_frame, text="Visualizar Estoque", command=self.open_view_stock_screen, bg="#007BFF", fg="white")
         self.view_button.pack(pady=10)
+        
+        self.logout_button = tk.Button(self.main_frame, text="Sair", command=self.logout, bg="#FF5733", fg="white")
+        self.logout_button.pack(pady=10)
+        
+    def logout(self):
+        self.main_frame.destroy()
+        self.create_login_screen()
 
     def open_add_product_screen(self):
         self.main_frame.destroy()
